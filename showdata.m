@@ -162,8 +162,7 @@ spem_rmse(k,:) = [RMSE_spem_2,RMSE_spem_6,RMSE_spem_20];
 
 end
 
-% plot the gain (slope) and variability (rmse) of smooth pursuit for
-% average subject
+
 subplot(1,2,1);hold on;plot([2,6,20],median(spem_sens,1),'o-k','LineWidth',2,'MarkerSize',5);
 set(gca,'FontSize',15,'LineWidth',3,'XTick',[2,6,20])
 xlabel('diameter (degree)');ylabel('sensitivity');
@@ -171,12 +170,8 @@ subplot(1,2,2);hold on;plot([2,6,20],median(spem_rmse,1),'o-k','LineWidth',2,'Ma
 set(gca,'FontSize',15,'LineWidth',3,'XTick',[2,6,20])
 xlabel('diameter (degree)');ylabel('RMSE');
 
-LY = max(0,median(spem_sens,1)-std(spem_sens,1)./sqrt(numSubjects));
-UY = min(1,median(spem_sens,1)+std(spem_sens,1)./sqrt(numSubjects));
-subplot(1,2,1);hold on;ploterr([2,6,20],median(spem_sens,1),[],{LY,UY},'.k');
-LY = max(0,median(spem_rmse,1)-std(spem_rmse,1)./sqrt(numSubjects));
-UY = min(1,median(spem_rmse,1)+std(spem_rmse,1)./sqrt(numSubjects));
-subplot(1,2,2);hold on;ploterr([2,6,20],median(spem_rmse,1),[],{LY,UY},'.k')
+subplot(1,2,1);hold on;ploterr([2,6,20],median(spem_sens,1),[],std(spem_sens,1)./sqrt(numSubjects),'.k')
+subplot(1,2,2);hold on;ploterr([2,6,20],median(spem_rmse,1),[],std(spem_rmse,1)./sqrt(numSubjects),'.k')
 
  saveas(gcf,'./figures/fig4.svg')
 end
