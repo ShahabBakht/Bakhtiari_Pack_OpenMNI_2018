@@ -1,5 +1,5 @@
 
-# Run showdata() 
+# showdata() function
 - showdata() plots the varaibility and gain of smooth pursuit for average subjects.
 - showdata() opens the preprocessed folder and runs the analysis on all subjects individually to estimate the gain and variability of smooth pursuit.
 - showdata() also fits mixed-effect model to the data from all subjects pooled together.
